@@ -3,9 +3,8 @@
 // GET /characters/:id ==> Get a character by ID
 // PUT /characters/:id ==> Update a character by ID
 // DELETE /characters/:id ==> Delete a character by ID
-
-const express = require("express")
-const data = require("./user.json")
+import express from 'express'
+import data from './user.json'
 
 const app = express()
 const HOST = "localhost"
