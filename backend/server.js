@@ -1,56 +1,16 @@
-// GET /characters ==> Get all characters
-// POST /characters ==> Create a new character
-// GET /characters/:id ==> Get a character by ID
-// PUT /characters/:id ==> Update a character by ID
-// DELETE /characters/:id ==> Delete a character by ID
-import express from 'express'
-import data from './user.json'
+import express from 'express';
+import route from './routes/route.js';
+import cors from "cors"
 
-const app = express()
-const HOST = "localhost"
-const PORT = 8000
+const port = 8080;
+const app = express();
 
-app.listen(PORT)
-console.log(`Server running at http://${HOST}:${PORT}/`);
+app.use(cors());
+app.use(express.json());
+app.use(route);
 
-app.use(express.json())
+app.use("/characters",route)
 
-app.get("/characters", (req, res) => {
-    res.send(data)
-})
-
-app.post("/characters", (req, res) => {
-    const newCharacter = req.body
-    data.characters.push(newCharacter)
-    res.status(201).send(data)
-})
-app.get("/characters/:id", (req, res) => {
-    const character = data.characters.find(character => character.id == req.params.id)
-    if (character) {
-        res.json(character)
-    } else {
-        res.status(404).send({ error: "Character not found"})
-    }
-})
-
-app.put("/characters/:id", (req, res) => {
-    const character = data.characters.find(character => character.id == req.params.id)
-    if (character) {
-        character.name = req.body.name
-        character.realName = req.body.realName
-        character.universe = req.body.universe
-        res.json(data)
-    } else {
-        res.status(404).send({ error: "Character not found"})
-    }
-})
-
-app.delete("/characters/:id", (req, res) => {
-    const character = data.characters.find(character => character.id == req.params.id)
-    if (character) {
-        data.characters = data.characters.filter(character => character.id != req.params.id)
-        res.json(data)
-    } else {
-        res.status(404).send({ error: "Character not found"})
-    }
-})
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
