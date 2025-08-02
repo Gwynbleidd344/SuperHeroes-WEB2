@@ -2,51 +2,129 @@
   "characters": [
     {
       "id": 1,
-      "name": "Spider-Man",
-      "realName": "Peter Parker",
-      "universe": "Earth-616"
+      "name": "Batman",
+      "realName": "Bruce Wayne",
+      "universe": "DCU"
     },
     {
       "id": 2,
       "name": "Iron Man",
       "realName": "Tony Stark",
-      "universe": "Earth-616"
+      "universe": "MCU"
     },
     {
       "id": 3,
-      "name": "Captain America",
-      "realName": "Steve Rogers",
-      "universe": "Earth-616"
+      "name": "Wonder Woman",
+      "realName": "Diana Prince",
+      "universe": "DCU"
     },
     {
       "id": 4,
-      "name": "Black Widow",
-      "realName": "Natasha Romanoff",
-      "universe": "Earth-616"
+      "name": "Spider-Man",
+      "realName": "Peter Parker",
+      "universe": "MCU"
     },
     {
       "id": 5,
-      "name": "Black Panther",
-      "realName": "T'Challa",
-      "universe": "Earth-616"
+      "name": "Superman",
+      "realName": "Clark Kent",
+      "universe": "DCU"
     },
     {
       "id": 6,
       "name": "Doctor Strange",
       "realName": "Stephen Strange",
-      "universe": "Earth-616"
+      "universe": "MCU"
     },
     {
       "id": 7,
-      "name": "Scarlet Witch",
-      "realName": "Wanda Maximoff",
-      "universe": "Earth-616"
+      "name": "The Flash",
+      "realName": "Barry Allen",
+      "universe": "DCU"
     },
     {
       "id": 8,
-      "name": "Hulk",
-      "realName": "Bruce Banner",
-      "universe": "Earth-616"
+      "name": "Scarlet Witch",
+      "realName": "Wanda Maximoff",
+      "universe": "MCU"
+    },
+    {
+      "id": 9,
+      "name": "Green Lantern",
+      "realName": "Hal Jordan",
+      "universe": "DCU"
+    },
+    {
+      "id": 10,
+      "name": "Captain America",
+      "realName": "Steve Rogers",
+      "universe": "MCU"
+    },
+    {
+      "id": 11,
+      "name": "Aquaman",
+      "realName": "Arthur Curry",
+      "universe": "DCU"
+    },
+    {
+      "id": 12,
+      "name": "Black Widow",
+      "realName": "Natasha Romanoff",
+      "universe": "MCU"
+    },
+    {
+      "id": 13,
+      "name": "Cyborg",
+      "realName": "Victor Stone",
+      "universe": "DCU"
+    },
+    {
+      "id": 14,
+      "name": "Thor",
+      "realName": "Thor Odinson",
+      "universe": "MCU"
+    },
+    {
+      "id": 15,
+      "name": "Shazam",
+      "realName": "Billy Batson",
+      "universe": "DCU"
+    },
+    {
+      "id": 16,
+      "name": "Black Panther",
+      "realName": "T'Challa",
+      "universe": "MCU"
+    },
+    {
+      "id": 17,
+      "name": "Green Arrow",
+      "realName": "Oliver Queen",
+      "universe": "DCU"
+    },
+    {
+      "id": 18,
+      "name": "Deadpool",
+      "realName": "Wade Wilson",
+      "universe": "MCU"
+    },
+    {
+      "id": 19,
+      "name": "Supergirl",
+      "realName": "Kara Zor-El",
+      "universe": "DCU"
+    },
+    {
+      "id": 20,
+      "name": "Captain Marvel",
+      "realName": "Carol Danvers",
+      "universe": "MCU"
+    },
+    {
+      "id": 21,
+      "name": "Martian Manhunter",
+      "realName": "J'onn J'onzz",
+      "universe": "DCU"
     }
   ]
 }

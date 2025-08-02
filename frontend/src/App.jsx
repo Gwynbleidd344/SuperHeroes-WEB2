@@ -1,75 +1,69 @@
-import './App.css'
 import Header from "./components/Header.jsx";
+import CardList from "./components/CardList.jsx";
+import Update from "./components/Update.jsx";
+import Add from "./components/AddPopUp.jsx";
 import {useEffect, useState} from "react";
-import Card from "./components/Card.jsx";
 
 function App() {
+    const [isAddOpen, setIsAddOpen] = useState(false);
+    const [isUpdateOpen, setIsUpdateOpen] = useState(false);
     const [characters, setCharacters] = useState([]);
-    const [searchTerm, setSearchTerm] = useState("");
-    const API_URL = "http://localhost:8080/characters";
+    const [selectedCharacter, setSelectedCharacter] = useState(null);
 
     useEffect(() => {
-        fetch(API_URL)
-            .then((res) => {
-                if (!res.ok) {
-                    console.error(`Erreur HTTP: ${res.status} ${res.statusText}`);
-                    throw new Error(`HTTP error! status: ${res.status}`);
-                }
-                return res.json();
-            })
-            .then(data => {
-                console.log("Données brutes reçues de l'API:", data);
-                if (data && Array.isArray(data.characters)) {
-                    setCharacters(data.characters);
-                    console.log("Characters mis à jour avec:", data.characters);
-                } else {
-                    console.error("La réponse de l'API ne contient pas un tableau 'characters' valide:", data);
-                    setCharacters([]);
-                }
-            })
-            .catch((err) => {
-                console.error("Erreur lors de la récupération des données de l'API:", err);
-                setCharacters([]);
-            });
+        const fetchCharacters = async () => {
+            try {
+                const res = await fetch('http://localhost:8080/characters');
+                const data = await res.json();
+                setCharacters(data);
+            } catch (error) {
+                console.error("Erreur de chargement :", error);
+            }
+        };
+
+        fetchCharacters();
     }, []);
-
-    const handleDelete = (id) => {
-        fetch(`${API_URL}/${id}`, { method: "DELETE" }).then(() => {
-            setCharacters(characters.filter((char) => char.id !== id));
-        });
+    const handleCharacterAdded = (newChar) => {
+        setCharacters((prev) => [...prev, newChar]);
     };
 
-    const handleUpdate = (id) => {
-        const updatedName = prompt("Nouveau nom ?");
-        if (!updatedName) return;
-        fetch(`${API_URL}/${id}`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name: updatedName }),
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                setCharacters(characters.map((char) => (char.id === id ? data.character : char)));
-            });
+    const handleCharacterUpdated = (updatedChar) => {
+        setCharacters((prev) =>
+            prev.map((char) => (char.id === updatedChar.id ? updatedChar : char))
+        );
+        setSelectedCharacter(null);
     };
 
-    const filtered = characters.filter((char) => char.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    const handleCharacterDeleted = (id) => {
+        setCharacters((prev) => prev.filter((char) => char.id !== id));
+    };
 
+    const handleEditClick = (character) => {
+        setSelectedCharacter(character);
+        setIsUpdateOpen(true);
+    };
     return (
-    <>
-        <Header searchTerm={searchTerm} onChange={setSearchTerm}/>
-        <div className='flex flex-col gap-4'>
-            {/* Condition pour afficher les cartes ou un message */}
-            {filtered.length > 0 ? (
-                filtered.map((char) => (
-                    <Card key={char.id} character={char} onDelete={handleDelete} onUpdate={handleUpdate}/>
-                ))
-            ) : (
-                <p className="text-center text-gray-500 mt-8">Aucun personnage trouvé.</p>
-            )}
-        </div>
-    </>
-  )
+        <>
+            <Header/>
+            <CardList
+                characters={characters}
+                onDelete={handleCharacterDeleted}
+                onEdit={handleEditClick}
+            />
+            <Add
+                isOpen={isAddOpen}
+                setIsOpen={setIsAddOpen}
+                onAdd={handleCharacterAdded}
+            />
+            <Update
+                isOpen={isUpdateOpen}
+                setIsOpen={setIsUpdateOpen}
+                character={selectedCharacter}
+                onUpdate={handleCharacterUpdated}
+                clearSelected={() => setSelectedCharacter(null)}
+            />
+        </>
+    )
 }
 
 export default App
