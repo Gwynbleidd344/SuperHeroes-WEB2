@@ -3,12 +3,19 @@ import CardList from "./components/CardList.jsx";
 import Update from "./components/Update.jsx";
 import Add from "./components/AddPopUp.jsx";
 import {useEffect, useState} from "react";
+import { useTheme } from "./context/ThemeContext.jsx";
 
 function App() {
     const [isAddOpen, setIsAddOpen] = useState(false);
     const [isUpdateOpen, setIsUpdateOpen] = useState(false);
     const [characters, setCharacters] = useState([]);
     const [selectedCharacter, setSelectedCharacter] = useState(null);
+    const [searchTerm, setSearchTerm] = useState("");
+    const { theme } = useTheme();
+
+    useEffect(() => {
+        document.body.className = theme === 'light' ? 'bg-white' : 'bg-gray-900';
+    }, [theme]);
 
     useEffect(() => {
         const fetchCharacters = async () => {
@@ -42,11 +49,16 @@ function App() {
         setSelectedCharacter(character);
         setIsUpdateOpen(true);
     };
+
+    const filteredCharacters = characters.filter((character) =>
+        character.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     return (
         <>
-            <Header/>
+            <Header searchTerm={searchTerm} setSearchTerm={setSearchTerm} setIsAddOpen={setIsAddOpen} />
             <CardList
-                characters={characters}
+                characters={filteredCharacters}
                 onDelete={handleCharacterDeleted}
                 onEdit={handleEditClick}
             />

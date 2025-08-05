@@ -11,7 +11,7 @@ export default function CardsList({ characters, onDelete, onEdit }) {
                     realName={char.realName}
                     universe={char.universe}
                     onDelete={onDelete}
-                    onEdit={onEdit}
+                    onUpdate={onEdit}
                 />
             ))}
         </div>

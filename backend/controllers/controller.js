@@ -43,9 +43,10 @@ exports.addCharacter = (req,res) => {
     try {
         const data = readData();
         const newCharacter = req.body;
+        let newId;
 
         if (data.characters.length > 0) {
-            const newId = Math.max(...data.characters.map(character => character.id)) + 1;
+            newId = Math.max(...data.characters.map(character => character.id)) + 1;
         } else {
             newId = 1;
         }
@@ -79,7 +80,7 @@ exports.updateCharacter = (req, res) => {
         data.characters[index] = { ...data.characters[index], ...newValue };
         writeData(data);
 
-        res.status(200).send(data.characters);
+        res.status(200).send(data.characters[index]);
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: "Server error" });
@@ -99,10 +100,7 @@ exports.deleteCharacter = (req, res) => {
         data.characters.splice(index, 1);
         writeData(data);
 
-        res.status(200).send({
-            message: `Character with id ${id} deleted.`,
-            characters: data.characters
-        });
+        res.status(204).send();
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: "Server error" });
