@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+@font-face {
+    font-family: 'BitcountCustom';
+    src: url('./assets/font/BitcountPropSingle_Cursive-Medium.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     transition: background-color 0.3s ease;
+}
+
+.BitcountCustom {
+    font-family: 'BitcountCustom';
 }

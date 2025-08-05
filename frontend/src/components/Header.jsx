@@ -8,7 +8,7 @@ export default function Header({ searchTerm, setSearchTerm, setIsAddOpen }) {
         <header className='flex items-center justify-between bg-indigo-900 p-4 sticky top-0'>
             <div className='flex items-center'>
                 <img src={logo} alt="logo" className='w-12'/>
-                <h1 className='hidden sm:inline text-white ml-4'>SuperHero Catalog</h1>
+                <h1 className='hidden sm:inline text-white ml-4 BitcountCustom text-3xl'>SuperHero Catalog</h1>
             </div>
             <div className="flex-grow flex justify-center">
                 <div className="relative w-1/2">
