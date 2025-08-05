@@ -28,9 +28,10 @@ export default function Header({ searchTerm, setSearchTerm, setIsAddOpen }) {
             </div>
             <button
                 onClick={() => setIsAddOpen(true)}
-                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 mr-4"
+                className="bg-blue-600 text-white px-4 py-2 sm:rounded rounded-full hover:bg-blue-700 mr-4 flex items-center justify-center"
             >
-                Add Character
+                <i className='bx bx-plus-circle text-2xl'></i>
+                <span className="hidden sm:inline">Add Character</span>
             </button>
             <button
                 onClick={toggleTheme}
